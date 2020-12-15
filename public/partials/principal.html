@@ -20,7 +20,7 @@
 <div class="row">
     <meu-painel class="col-md-2 painel-animado" ng-repeat="foto in fotos | filter: filtro" titulo="{{foto.titulo}}">
         <img class="img-responsive center-block" src="{{foto.url}}" alt="{{foto.titulo}}">
-        <a href="fotos/edit/{{foto._id}}" class="btn btn-primary btn-block">Editar</a>
+        <a href="fotos/edit/{{foto._id}}" class="btn btn-primary btn-block btn-foto">Editar</a>
         <meu-botao-perigo acao="remover(foto)" nome="Remover"></meu-botao-perigo>
     </meu-painel>
 </div>

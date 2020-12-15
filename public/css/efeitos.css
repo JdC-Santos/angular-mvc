@@ -13,3 +13,7 @@
     -o-transition: transform 0.8s;
     transition: transform 0.8s;
 }
+
+.btn-foto{
+    margin-top: 5px;
+}

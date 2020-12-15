@@ -39,7 +39,7 @@ angular.module('minhasDiretivas', [])
             acao: "&"
         }
 
-        ddo.template = '<button ng-click="acao(foto)" class="btn btn-danger btn-block">{{nome}}</button>';
+        ddo.template = '<button ng-click="acao(foto)" class="btn btn-danger btn-block btn-foto">{{nome}}</button>';
 
         return ddo;
     })
