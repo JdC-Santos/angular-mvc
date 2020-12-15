@@ -1,36 +1,32 @@
-angular.module('projeto')
-    .controller('FotoController', function($scope, $routeParams, $location, FotoService) {
+angular.module('alurapic').controller('FotoController', function ($scope, recursoFoto, cadastroDeFotos, $routeParams) {
+    $scope.foto = {};
+    $scope.mensagem = '';
 
-        $scope.foto = {};
-        $scope.mensagem = '';
-    
-        if($routeParams.fotoId) {
-            FotoService.get({fotoId: $routeParams.fotoId}, function(retorno) {
-                 $scope.foto = retorno;
-            });
+    if ($routeParams.fotoId) {
+        recursoFoto.get({ fotoId: $routeParams.fotoId }, function (foto) {
+            $scope.foto = foto;
+        }, function (error) {
+            console.log(error);
+            $scope.mensagem = "Não foi possivel carregar a foto";
+        });
+    }
+
+    $scope.submeter = function () {
+
+        if ($scope.formulario.$valid) {
+            cadastroDeFotos.cadastrar($scope.foto)
+                .then(function (data) {
+                    $scope.mensagem = data.mensagem;
+
+                    if (data.inclusao) {
+                        $scope.foto = {};
+                    }
+
+                }).catch(function (data) {
+                    $scope.mensagem = data.mensagem;
+                });
+        } else {
+            $scope.mensagem = 'Campos inválidos';
         }
-
-        $scope.submeter = function() {
-           if($scope.formulario.$valid) {
-                if(!$routeParams.fotoId) {
-                    
-                    FotoService.save($scope.foto, function(_id) {
-                        $scope.foto = {};
-                        $scope.mensagem = 'Salvo com sucesso';
-                    }, function(status) {
-                        console.log(status);
-                        $scope.mensagem = 'Não foi possível salvar';
-                    });
-
-                } else {
-                    FotoService.update({fotoId : $scope.foto._id}, $scope.foto, function(_id) {
-                        $scope.foto = {};
-                        $scope.mensagem = 'Alterado com sucesso';                        
-                    }, function(status) {
-                        console.log(status);
-                        $scope.mensagem = 'Não foi possível alterar';
-                    });                    
-                }
-           } 
-        };
-    });
+    }
+});

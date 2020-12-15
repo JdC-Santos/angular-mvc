@@ -1,12 +1,11 @@
-angular.module('projeto', 
-    ['ngResource','ngRoute', 'ngAnimate', 'ngCookies', 'Picture', 'Panel', 'FotoService'])
-    .config(function($routeProvider, $locationProvider) {
+angular.module('alurapic', ['minhasDiretivas', 'ngAnimate', 'ngRoute', 'meusServicos'])
+    .config(function ($routeProvider, $locationProvider) {
 
         $locationProvider.html5Mode(true);
 
         $routeProvider.when('/fotos', {
             templateUrl: 'partials/principal.html',
-            controller: 'PrincipalController'
+            controller: 'FotosController'
         });
 
         $routeProvider.when('/fotos/new', {
@@ -19,6 +18,6 @@ angular.module('projeto',
             controller: 'FotoController'
         });
 
-        $routeProvider.otherwise({redirectTo: '/fotos'});
+        $routeProvider.otherwise({ redirectTo: '/fotos' });
 
     });
