@@ -1,8 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
+            <h1>{{titulo}}</h1>
+            <hr>
             <p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
-            <h1>{{foto.titulo}}</h1>
+            <h2>{{foto.titulo}}</h2>
             <form novalidate name="formulario" method="post" ng-submit="submeter()">
 
                 <div class="form-group">
@@ -40,8 +42,8 @@
                 </div>
 
                 <hr>
-                <!-- ng-disabled="formulario.$invalid" -->
-                <button class="btn btn-primary">
+
+                <button class="btn btn-primary" ng-disabled="formulario.$invalid">
                     Salvar
                 </button>
                 <a href="/" class="btn btn-primary" meu-focus>Voltar</a>
