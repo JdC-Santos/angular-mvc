@@ -70,4 +70,19 @@ angular.module('minhasDiretivas', [])
         }
 
         return ddo;
+    })
+    .directive('alertInputRequired', function () {
+        var ddo = {};
+
+        ddo.restrict = "AE";
+
+        ddo.scope = {
+            formulario: '=',
+            input: '='
+        };
+
+        ddo.template = '<span ng-show="formulario.$submitted && formulario.titulo.$error.required"'
+            + 'class="form-control alert-danger"> Campo Obrigatório!</span>';
+
+        return ddo;
     });
